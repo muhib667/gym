@@ -1,0 +1,51 @@
+                                      +------------------+
+                                      |      Gym         |
+                                      +------------------+
+                                      | gym_id (PK)      |
+                                      | name             |
+                                      | address          |
+                                      | phone_number     |
+                                      +------------------+
+                                               |
+                                               |
+                    +--------------------------+--------------------------+
+                    |                                                   |
+                    v                                                   v
+          +------------------+                             +------------------+
+          |     Member       |                             |      Session     |
+          +------------------+                             +------------------+
+          | member_id (PK)   |                             | session_id (PK) |
+          | last_name        |                             | sport            |
+          | first_name       |                             | schedule         |
+          | address          |                             | max_capacity     |
+          | date_of_birth    |                             +------------------+
+          | gender           |                                             |
+          | gym_id (FK)      |                                             |
+          +------------------+                                             |
+                    |                                                      |
+                    |                                                      |
+     +--------------+------------------+                           +-------+--------+
+     |                                |                           |                |
+     v                                v                           v                v
++--------------+            +----------------+        +------------------+    +------------------+
+|    Coach     |            |   Membership   |        | Member_Session   |    |   Coach_Session   |
++--------------+            +----------------+        +------------------+    +------------------+
+| coach_id (PK)|            | membership_id  |        | member_id (FK)   |    | coach_id (FK)    |
+| last_name    |            | member_id (FK) |        | session_id (FK)  |    | session_id (FK)  |
+| first_name   |            | gym_id (FK)    |        +------------------+    +------------------+
+| age          |            | join_date      |                                  |
+| specialty    |            | expiration_date|                                  |
++--------------+            +----------------+                                  |
+                                                                               |
+                                                                               |
+                                                                      +--------+---------+
+                                                                      |                  |
+                                                                      v                  v
+                                                                  +-------+-------+  +-------+-------+
+                                                                  |   Payment      |  |   Attendance  |
+                                                                  +-------+-------+  +-------+-------+
+                                                                  | payment_id (PK)|  | attendance_id|
+                                                                  | amount         |  | member_id(FK)|
+                                                                  | date           |  | session_id(FK)|
+                                                                  | membership_id (FK) |              |
+                                                                  +------------------+  +--------------+
